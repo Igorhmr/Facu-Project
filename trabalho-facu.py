@@ -8,7 +8,7 @@ user = "postgres"
 password = ""
 port = "5432"
 
-# Verifica se o banco 'Escola_tentando' existe, se não, cria
+# Verifica se o banco 'escola_tentando' existe, se não, cria
 def garantir_banco():
     try:
         conexao = psycopg2.connect(
@@ -16,13 +16,13 @@ def garantir_banco():
         )
         conexao.set_session(autocommit=True)
         cursor = conexao.cursor()
-        cursor.execute("SELECT 1 FROM pg_database WHERE datname = 'Escola_tentando';")
+        cursor.execute("SELECT 1 FROM pg_database WHERE datname = 'escola_tentando';")
         existe = cursor.fetchone()
         if not existe:
-            cursor.execute("CREATE DATABASE Escola_tentando;")
-            print("Banco 'Escola_tentando' criado com sucesso.")
+            cursor.execute("CREATE DATABASE escola_tentando;")
+            print("Banco 'escola_tentando' criado com sucesso.")
         else:
-            print("Banco 'Escola_tentando' já existe.")
+            print("Banco 'escola_tentando' já existe.")
     except psycopg2.Error as erro:
         print("Erro ao verificar/criar banco:", erro)
         messagebox.showerror("Erro", f"Erro ao verificar/criar banco:\n{erro}")
@@ -55,7 +55,7 @@ def pesquisar_aluno():
     garantir_banco()
     try:
         conexao = psycopg2.connect(
-            host=host, user=user, password=password, port=port, dbname='Escola_tentando'
+            host=host, user=user, password=password, port=port, dbname='escola_tentando'
         )
         cursor = conexao.cursor()
         cursor.execute("""
@@ -93,7 +93,7 @@ def listar_alunos():
         return
     try:
         conexao = psycopg2.connect(
-            host=host, user=user, password=password, port=port, dbname='Escola_tentando'
+            host=host, user=user, password=password, port=port, dbname='escola_tentando'
         )
         cursor = conexao.cursor()
         cursor.execute("""
@@ -132,7 +132,7 @@ def inserir_nota():
     garantir_banco()
     try:
         conexao = psycopg2.connect(
-            host=host, user=user, password=password, port=port, dbname='Escola_tentando'
+            host=host, user=user, password=password, port=port, dbname='escola_tentando'
         )
         cursor = conexao.cursor()
         cursor.execute("""
@@ -172,7 +172,7 @@ def pesquisar_nota():
     garantir_banco()
     try:
         conexao = psycopg2.connect(
-            host=host, user=user, password=password, port=port, dbname='Escola_tentando'
+            host=host, user=user, password=password, port=port, dbname='escola_tentando'
         )
         cursor = conexao.cursor()
         cursor.execute("""
